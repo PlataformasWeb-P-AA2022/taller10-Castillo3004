@@ -1,0 +1,22 @@
+<h3> Numero de Barrios:  {{ numero_barrios}}
+
+    <ol>
+        {% for e in barrios %}
+    
+        <li>
+            <span>{{e.nombre }}: <dd>Viviendas - {{ e.nroViviendas }}
+                <dd>Parques - {{ e.nroParques }}
+                <dd>Edificios - {{ e.nroEdificios }}
+                <dd>Parroquia - {{e.parroquia.nombre}}
+                
+            </span> 
+            <br>[<a href="{% url 'editar_barrio' e.id %}">Editar</a>]
+            
+        </li>
+        <br>    
+        <hr/>
+    {% endfor %}
+    </ol>
+
+    <br/>
+    [<a href="{% url 'index' %}">Inicio</a>]

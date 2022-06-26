@@ -1,0 +1,35 @@
+<h3> Numero de Parroquias:  {{ numero_parroquias}}
+
+<ul>
+{% for e in parroquias %}
+
+    <li>
+        {{e.nombre }} | {{e.tipo}} [<a href="{% url 'editar_parroquia' e.id %}">Editar</a>]
+        [<a href="{% url 'eliminar_parroquia' e.id %}" 
+        onclick="return confirm('¿Está seguro de la eliminar la parroquia {{ e.nombre}}?')">Eliminar</a>] <br><br>
+        
+        <ul>
+            {% for t in e.los_barrios.all %}
+            <li>
+                <span>{{ t.nombre }} [<a href="{% url 'obtener_barrio' t.id %}"> Ver </a> ]  
+                        [<a href="{% url 'editar_barrio' t.id %}">Editar</a>]
+                        [<a href="{% url 'eliminar_barrio' t.id %}" 
+                        onclick="return confirm('¿Está seguro de la eliminar el barrio {{ t.nombre}}?')">Eliminar</a>]     
+                </span>
+            </li>
+            {% endfor %}
+        </ul>
+        <br>
+        [<a href="{% url 'crear_barrio_parroquia' e.id %}"> Crear Barrio para {{e.nombre}}</a> ]
+    </li>
+    <br>    
+    <hr/>
+{% endfor %}
+</ul>
+
+<br/>
+[<a href="{% url 'lista_barrios' %}">Lista de Barrios</a>]
+&nbsp;&nbsp;&nbsp;&nbsp;
+[<a href="{% url 'crear_parroquia' %}">Crear Parroquia </a>]
+&nbsp;&nbsp;&nbsp;&nbsp;
+[<a href="{% url 'crear_barrio' %}">Crear Barrio</a>]
